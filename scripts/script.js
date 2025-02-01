@@ -21,3 +21,16 @@ function calculateResult() {
         display.value = 'Error';
     }
 }
+
+
+async function calculate(operation, num1, num2) {
+    const response = await fetch('/calculate', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ operation, num1, num2 })
+    });
+    const result = await response.text();
+    document.getElementById('display').value = result;
+}
